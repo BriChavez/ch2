@@ -67,7 +67,20 @@ Where theme_id in
  	WHERE t.name in ('pirates', 'star wars') 
  	AND s.theme_id = t.id);
 
+-- # Select the ids of the values in the inventories table that
+-- # have more than one version (i.e. version > 1). This is your
+-- # subquery. 
 
+-- # Then select everything from the inventory_parts
+-- # table where the inventory_id matches an id in that subquery.
+-- # Limit the output to 10 rows.
+
+SELECT * 
+FROM inventory_parts 
+WHERE inventory_id IN 
+	(SELECT id 
+     FROM inventories 
+     WHERE version > 1);
 
 -- # Aliasing the sets table as 's', select the year and name 
 -- # of the values in that table that include the substring 
@@ -144,8 +157,8 @@ JOIN part_categories
 ON part_categories.id = parts.part_cat_id
 WHERE parts.name like '%werewolf%';
 
-# Repeat the query above, but this time write it explicitly using INNER JOIN, and alias parts as 'p' 
-# and part_categories as 'pc'.
+-- # Repeat the query above, but this time write it explicitly using INNER JOIN, and alias parts as 'p' 
+-- # and part_categories as 'pc'.
 
 SELECT pc.id, p.part_cat_id, p.name
 FROM parts p
@@ -175,4 +188,4 @@ ON c.id = ip.color_id;
 SELECT COUNT(c.id), COUNT(ip.color_id)
 FROM colors c
 INNER JOIN inventory_parts ip
-ON c.id = ip.color_id
+ON c.id = ip.color_id;
