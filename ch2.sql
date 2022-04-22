@@ -133,3 +133,13 @@ WHERE year >1999;
 SELECT theme_id, AVG(num_parts) avg_parts
 FROM sets
 GROUP BY theme_id
+
+-- # Using a free-form join (where the JOIN type isn't specified, equivalent to an inner join), join the parts and 
+-- # part_categories tables. Filter for values where the part_categories id matches the parts 
+-- # partcatid, and where the name of the part contains the word 'Werewolf'.
+
+SELECT pc.id, p.part_cat_id, p.name
+FROM parts p
+JOIN part_categories pc 
+ON pc.id = p.part_cat_id
+WHERE p.name like '%werewolf%';
