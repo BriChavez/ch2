@@ -138,8 +138,41 @@ GROUP BY theme_id
 -- # part_categories tables. Filter for values where the part_categories id matches the parts 
 -- # partcatid, and where the name of the part contains the word 'Werewolf'.
 
+SELECT part_categories.id, parts.part_cat_id, parts.name
+FROM parts
+JOIN part_categories
+ON part_categories.id = parts.part_cat_id
+WHERE parts.name like '%werewolf%';
+
+# Repeat the query above, but this time write it explicitly using INNER JOIN, and alias parts as 'p' 
+# and part_categories as 'pc'.
+
 SELECT pc.id, p.part_cat_id, p.name
 FROM parts p
 JOIN part_categories pc 
 ON pc.id = p.part_cat_id
 WHERE p.name like '%werewolf%';
+
+-- # Perform left, right, and inner joins on the colors and inventory_parts tables, where the color id matches 
+-- # the inventory_parts color id. Note many rows each join returns. Write a brief comment in your SQL file under 
+-- # these code blocks explaining what the difference in rows tells you.
+
+
+SELECT COUNT(c.id), COUNT(ip.color_id)
+FROM colors c
+LEFT JOIN inventory_parts ip
+ON c.id = ip.color_id;
+
+-- # there are 4 more id in the color table then there are in the inventory parts.
+
+SELECT COUNT(c.id), COUNT(ip.color_id)
+FROM colors c
+RIGHT JOIN inventory_parts ip
+ON c.id = ip.color_id;
+
+-- # right and inner join return the same
+
+SELECT COUNT(c.id), COUNT(ip.color_id)
+FROM colors c
+INNER JOIN inventory_parts ip
+ON c.id = ip.color_id
