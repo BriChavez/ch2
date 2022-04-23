@@ -17,7 +17,7 @@ _This program does an indepth look at the legos database and returns information
 
 ## Setup/Installation Requirements
 
-* Go to program's github 
+* Go to program's github https://github.com/BriChavez/ch2.git
 * download all necessary requirements, including db_start, the lego.sql, and requirements.txt
 * clone the repo into your terminal and run a pip install on requirements.txt
 * open file with vs Code and run the command prompts in the opening files
